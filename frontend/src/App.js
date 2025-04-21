@@ -8,6 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [todos,setTodos]=useState([]);
+  const[edit,setEdit]=useState(null);
+  
 
   useEffect(()=>{
     axios.get("http://localhost:8080/todos")
@@ -16,8 +18,11 @@ function App() {
   },[])
   const addtodo=(todo)=> setTodos([...todos,todo])
 
-  const updatetodo=(updated)=>{
+  const updatetodo=async (updated)=>{
+    
     setTodos(todos.map(todo => todo.id === updated.id ?updated : todo));
+    
+
   }
 
   const deletetodo=(id)=>{
@@ -28,8 +33,11 @@ function App() {
   return (
     <div className="container mt-5">
     <h2 className="text-center mb-4">📝 My Todo List</h2>
-    <Todoform onAdd={addtodo} />
-    <TodoList todos={todos} onDelete={deletetodo} onToggle={updatetodo} />
+    <Todoform onAdd={addtodo} onUpdate={updatetodo} onEdit={edit} setEdit={setEdit} />
+
+
+    <TodoList todos={todos} onDelete={deletetodo} onToggle={updatetodo} setEdit={setEdit} />
+
   </div>
 );
   
