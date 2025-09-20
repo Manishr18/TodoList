@@ -14,7 +14,7 @@ pipeline {
                 // Make sure Docker Compose is installed on your Jenkins machine
                 sh 'docker-compose down'
                 sh 'docker-compose build'
-                sh 'docker-compose up -d --no-recreate backend frontend mysql'
+                sh 'docker-compose up -d '
             }
         }
     }
