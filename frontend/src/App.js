@@ -12,7 +12,7 @@ function App() {
   
 
   useEffect(()=>{
-    axios.get("http://localhost:8080/todos")
+    axios.get(`${process.env.REACT_APP_API_URL}/todos`)
     .then((res)=> setTodos(res.data))
     .catch((err)=> console.log(err))
   },[])

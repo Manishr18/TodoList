@@ -22,7 +22,7 @@ export const Todoform = ({onAdd,onUpdate,onEdit,setEdit}) => {
         };
         if(onEdit){
           try {
-            const res = await axios.put(`http://localhost:8080/todos/${onEdit.id}`, Todo);
+            const res = await axios.put(`${process.env.REACT_APP_API_URL}/todos/${onEdit.id}`, Todo);
             onUpdate(res.data)
             setEdit(null)
           } catch (err) {
@@ -34,7 +34,7 @@ export const Todoform = ({onAdd,onUpdate,onEdit,setEdit}) => {
         }
         else{
           try {
-            const res = await axios.post("http://localhost:8080/todos", Todo);
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/todos`, Todo);
             onAdd(res.data);
           } catch (err) {
             console.error("Failed to add todo:", err);

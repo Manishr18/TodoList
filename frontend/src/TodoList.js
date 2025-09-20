@@ -4,12 +4,12 @@ import React from 'react'
 export const TodoList = ({todos,onToggle,onDelete,onUpdate,setEdit}) => {
     const handleToggle=async (todo)=>{
         const updated={...todo,completed: !todo.completed};
-        const res=await axios.put(`http://localhost:8080/todos/${todo.id}`,updated)
+        const res=await axios.put(`${process.env.REACT_APP_API_URL}/todos/${todo.id}`,updated)
         onToggle(res.data)
     };
     const handleDelete = async (id) => {
         try {
-          await axios.delete(`http://localhost:8080/todos/${id}`);
+          await axios.delete(`${process.env.REACT_APP_API_URL}/todos/${id}`);
           onDelete(id);
         } catch (error) {
           console.error("Delete failed:", error);
