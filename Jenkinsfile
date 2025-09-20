@@ -14,7 +14,7 @@ pipeline {
                 // Make sure Docker Compose is installed on your Jenkins machine
                 sh 'docker-compose down'
                 sh 'docker-compose build'
-                sh 'docker-compose up -d'
+                sh 'docker-compose up -d --no-create'
             }
         }
     }
